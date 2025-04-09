@@ -1,0 +1,27 @@
+@import url('./lib/bootstrap-reboot.min.css');
+
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  line-height: 1.5;
+  font-size: 18px;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color-scheme: light dark;
+
+  color: #252525;
+  background-color: #f8f8f8;
+}
