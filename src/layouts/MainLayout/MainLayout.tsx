@@ -19,7 +19,7 @@ export function MainLayout({ children }: PropsWithChildren) {
           </Flex>
         </Container>
         <Center>
-          <Container maxWidth='breakpoint-xl' paddingBlock={4} centerContent>
+          <Container maxWidth='breakpoint-xl' paddingBlock={10} centerContent>
             { children }
           </Container>
         </Center>
