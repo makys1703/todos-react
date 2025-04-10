@@ -1,16 +1,26 @@
-import { Checkbox, useCheckbox } from '@chakra-ui/react';
+import { useContext } from 'react';
+import { ITodoContext, TodoContext } from '@/entities/todo/context';
+import { Checkbox } from '@chakra-ui/react';
+import { Todo } from '@/entities/todo/Todo.entity';
+import { todoActions } from '@/entities/todo/state';
 
 
-export function TodoItem() {
-  const checkbox = useCheckbox();
+interface IProps {
+  todo: Todo
+};
+
+export function TodoItem({ todo }: IProps) {
+  const { todosDispatch } = useContext(TodoContext) as ITodoContext;
 
   return (
-    <Checkbox.RootProvider value={checkbox} width='full'>
-      <Checkbox.Root variant='outline' colorPalette='orange'>
-        <Checkbox.HiddenInput />
-        <Checkbox.Control />
-        <Checkbox.Label paddingInline={2} fontSize={18} fontWeight={400}>Todo Item</Checkbox.Label>
-      </Checkbox.Root>
-    </Checkbox.RootProvider>
+    <Checkbox.Root
+      width='full'
+      checked={todo.completed}
+      onCheckedChange={() => todosDispatch(todoActions.toggle(todo.id))}
+    >
+      <Checkbox.HiddenInput />
+      <Checkbox.Control />
+      <Checkbox.Label paddingInline={4}>{ todo.text }</Checkbox.Label>
+    </Checkbox.Root>
   );
 };

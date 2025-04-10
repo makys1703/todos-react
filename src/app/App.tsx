@@ -1,4 +1,5 @@
 import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
+import { TodoProvider } from '@/entities/todo/context';
 import { MainPage } from '@/pages';
 import './styles/globals.css';
 
@@ -6,7 +7,9 @@ import './styles/globals.css';
 export function App() {
   return (
     <ChakraProvider value={defaultSystem}>
-      <MainPage />
+      <TodoProvider>
+        <MainPage />
+      </TodoProvider>
     </ChakraProvider>
   );
 }

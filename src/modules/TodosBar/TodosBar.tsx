@@ -1,20 +1,24 @@
-import { Flex, HStack } from '@chakra-ui/react';
+import { useContext, MouseEventHandler } from 'react';
+import { Flex } from '@chakra-ui/react';
+import { Filters } from './components';
 import { FilterButton } from './components';
+import { TodoContext, ITodoContext } from '@/entities/todo/context';
+import { todoActions } from '@/entities/todo/state';
 
 
-const Filters = () => {
-  return (
-    <HStack>
-      <FilterButton active>Все</FilterButton>
-      <FilterButton>Активные</FilterButton>
-      <FilterButton>Выполненные</FilterButton>
-    </HStack>
-  );
+interface IProps {
+  activeTodosCount: number
 };
 
-export function TodosBar() {
+export function TodosBar({ activeTodosCount }: IProps) {
+  const { todosDispatch } = useContext(TodoContext) as ITodoContext;
+
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (): void => {
+    todosDispatch(todoActions.removeCompleted());
+  };
+
   return (
-    <Flex 
+    <Flex
       gap={10}
       paddingBlock={4}
       fontSize={14}
@@ -23,9 +27,9 @@ export function TodosBar() {
       alignItems='center'
       borderTop='1px solid #ccc'
     >
-      <FilterButton red>Удалить выполненные</FilterButton>
+      <FilterButton onClick={handleClick} red>Удалить выполненные</FilterButton>
       <Filters />
-      <span>Осталось дел: 3</span>
+      <span>Осталось дел: { activeTodosCount }</span>
     </Flex>
   );
 };

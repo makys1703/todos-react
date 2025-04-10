@@ -1,13 +1,14 @@
 import { Button } from '@chakra-ui/react';
-import { PropsWithChildren } from 'react';
+import { MouseEventHandler, PropsWithChildren } from 'react';
 
 
 interface IProps extends PropsWithChildren {
-  active?: boolean,
+  active?: boolean
   red?: boolean
+  onClick?: MouseEventHandler<HTMLButtonElement>
 };
 
-export function FilterButton({ children, active = false, red = false }: IProps) {
+export function FilterButton({ children, active = false, red = false, onClick }: IProps) {
   const variant = active ? 'solid' : 'outline';
   const colorPalette = red ? 'red' : 'gray';
 
@@ -18,6 +19,7 @@ export function FilterButton({ children, active = false, red = false }: IProps) 
       fontWeight={400}
       colorPalette={colorPalette}
       variant={variant}
+      onClick={onClick}
     >
       { children }
     </Button>
